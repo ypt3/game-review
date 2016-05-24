@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <style>
+    body {
+      padding-top: 5px;
+      background-image: url(http://static.highsnobiety.com/wp-content/uploads/2015/11/17192033/game-boy-concept-up1-00.jpg);
+    }
+  </style>
+  <body>
+    <div class="container">
+      <a href="/add">Add Game and Review</a>
+      <span>|</span>
+      <a href="/logout">Logout</a>
+      <h3>Welcome, {{user.first_name}}</h3>
+      <h4>Recent Game reviews:</h4>
+      <br>
+      {% for review in reviews %}
+      <h5><a href="/games/{{review.game_id}}">{{review.game.title}}</a>
+      <h5>Gaming console: {{review.game.console}}</h5>
+      Rating:
+      {% if review.rating == 1 %}
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			{% elif review.rating == 2 %}
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			{% elif review.rating == 3 %}
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			{% elif review.rating == 4 %}
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			{% else %}
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			<img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+			{%endif%}
+      <br><br>
+      <a href="/users/{{review.user.id}}">{{review.user.first_name}}</a> says: {{review.review}}
+      <br>
+      {{review.created_at}}</h5>
+      <br><br>
+      {% if current_user.id == review.user_id %}
+        <a href="/games/{{review.game.id}}/delete" class="btn btn-danger">Delete</a>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </body>
+</html>

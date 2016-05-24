@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Game and review</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <style>
+    body {
+      padding-top: 5px;
+    }
+    #image {
+      margin-left: 650px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <a href="/logout">Logout</a> | <a href="/dashboard">Home</a>
+      <img src="http://gamesreviewer.net/wp-content/uploads/2014/05/games-reviewer-logo.jpg" alt="review" id="image"/>
+        <h3>{{game.title}}</h3>
+        <h4>{{game.author}}</h4>
+      <h3>Reviews</h3>
+      <hr>
+      {% for review in reviews %}
+        {% if review.rating == 1 %}
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          {% elif review.rating == 2 %}
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          {% elif review.rating == 3 %}
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          {% elif review.rating == 4 %}
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          {% else %}
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <img src="http://cdn.shopify.com/s/files/1/0134/3742/products/S_S-Classic-Star-Yellow-Art-Print.png" alt="" style="width:20px">
+          <br>
+        {% endif %}
+      <a href="/users/{{review.user.id}}">{{review.user.first_name}}</a> sarys: {{review.review}}
+      <br>
+      Posted on: {{review.created_at}}
+      <hr>
+      {% endfor %}
+      <h3>Add a review</h3>
+      <form action="/review_add/{{game.id}}/" method="post">
+        {%csrf_token%}
+        <div class="form-group">
+          <label for="review">Review:</label>
+          <textarea type="text" class="form-control" name="review" cols="5" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rating">Rating</label>
+          <select class="form-control" name="rating" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit review</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add A Game Review</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <style media="screen">
+    body {
+      padding-top: 5px;
+      background-image: url(http://www.marketingmag.ca/wp-content/uploads/2012/12/VideoGameArt.jpg);
+    }
+  </style>
+  <body>
+    <div class="container">
+      <a href="/dashboard">Home</a> | <a href="/logout">Logout</a>
+      <h2>Add a new game title and a review</h2>
+      <form action="/add_review" method="post">
+        {%csrf_token%}
+        <div class="form-group">
+          <label for="title">Name of Game:</label>
+          <input type="text" class="form-control" name="title" placeholder="name" required>
+        </div>
+        <div class="form-group">
+          <label for="console">Gaming console:</label>
+          <input type="text" class="form-control" name="console" placeholder="name" required>
+        </div>
+        <div class="form-group">
+          <label for="review">Review:</label>
+          <textarea type="text" class="form-control" name="review" cols="5" rows="10" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rating">Rating</label>
+          <select class="form-control" name="rating" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success">Add review</button>
+      </form>
+    </div>
+  </body>
+</html>

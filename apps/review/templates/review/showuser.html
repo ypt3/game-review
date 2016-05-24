@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Reviews</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <style>
+    body {
+      padding: 8px;
+    }
+    img {
+      margin-left: 850px;
+      margin-top: 230px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <a href="/dashboard">Home</a> | <a href="/add">Add Game and Review</a> | <a href="/logout">Logout</a>
+      <hr>
+      Name: {{user.first_name}}
+      <br>
+      Email: {{user.email}}
+      <br>
+      Total reviews: {{review.count}}
+
+      <h3>Posted reviews on the following games</h3>
+      {% for review in reviews %}
+        <a href="/games/{{review.game.id}}"></a>
+        <h5>{{review.game.title}}</h5>
+        <br>
+      {% endfor %}
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUMGm9CeskqaH1SzW9Vccqe_OIwlrSuGKJC4P4so0aSoz4heT9" alt="funnyface" />
+    </div>
+  </body>
+</html>
